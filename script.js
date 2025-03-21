@@ -1,3 +1,4 @@
+
 const playerEl = document.querySelector('.player-cards');
 const dealerEl = document.querySelector('.dealer-cards');
 const playerScoreEl = document.getElementById('player-score');
@@ -73,31 +74,11 @@ function showMessage(msg) {
   messageEl.textContent = msg;
 }
 
-function resolveGame(result) {
-  if (result === 'win') {
-    balance += bet;
-    showMessage(`Hai vinto $${bet}!`);
-  } else if (result === 'lose') {
-    balance -= bet;
-    showMessage(`Hai perso $${bet}.`);
-  } else {
-    showMessage("Pareggio.");
-  }
-
-  balanceEl.textContent = balance;
-
-  if (balance <= 0) {
-    showMessage("Non hai più soldi!");
-    disableControls(true);
-  } else {
-    disableControls();
-  }
-}
 
 function startGame() {
   bet = parseInt(betEl.value) || 0;
   if (bet > balance || bet <= 0) {
-    showMessage("Inserisci un numero valido!");
+    showMessage("Invalid bet amount!");
     disableControls(true);
     return;
   }
@@ -109,6 +90,10 @@ function startGame() {
   renderCards(dealerCards, dealerEl);
   disableControls(false);
   showMessage('');
+
+  if (playerTotal === 21) {
+    resolveGame('win');
+  }
 }
 
 hitBtn.addEventListener('click', () => {
@@ -117,6 +102,8 @@ hitBtn.addEventListener('click', () => {
   renderCards(playerCards, playerEl);
   if (playerTotal > 21) {
     resolveGame('lose');
+  } else if (playerTotal === 21) {
+    resolveGame('win');
   }
 });
 
@@ -135,6 +122,27 @@ standBtn.addEventListener('click', () => {
     resolveGame('tie');
   }
 });
+function resolveGame(result) {
+  if (result === 'win') {
+    balance += bet;
+    showMessage(`You win $${bet}!`);
+  } else if (result === 'lose') {
+    balance -= bet;
+    showMessage(`You lose $${bet}.`);
+  } else {
+    showMessage("It's a tie.");
+  }
+
+  balanceEl.textContent = balance;
+
+  if (balance <= 0) {
+    showMessage("You're out of money!");
+    disableControls(true);
+  } else {
+    disableControls();
+  }
+}
+
 
 resetBtn.addEventListener('click', startGame);
 
