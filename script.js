@@ -76,18 +76,18 @@ function showMessage(msg) {
 function resolveGame(result) {
   if (result === 'win') {
     balance += bet;
-    showMessage(`You win $${bet}!`);
+    showMessage(`Hai vinto $${bet}!`);
   } else if (result === 'lose') {
     balance -= bet;
-    showMessage(`You lose $${bet}.`);
+    showMessage(`Hai perso $${bet}.`);
   } else {
-    showMessage("It's a tie.");
+    showMessage("Pareggio.");
   }
 
   balanceEl.textContent = balance;
 
   if (balance <= 0) {
-    showMessage("You're out of money!");
+    showMessage("Non hai più soldi!");
     disableControls(true);
   } else {
     disableControls();
@@ -97,7 +97,7 @@ function resolveGame(result) {
 function startGame() {
   bet = parseInt(betEl.value) || 0;
   if (bet > balance || bet <= 0) {
-    showMessage("Invalid bet amount!");
+    showMessage("Inserisci un numero valido!");
     disableControls(true);
     return;
   }
