@@ -1,23 +1,18 @@
 name: Jekyll Build
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Create /docs directory if it doesn't exist
-        run: mkdir -p /github/workspace/docs
+    - name: Create /docs directory if it doesn't exist
+      run: mkdir -p ${{ github.workspace }}/docs
 
-      - name: Build Jekyll site
-        uses: actions/jekyll-build-pages@v1.0.13
-        with:
-          source: .
-          destination: ./_site
+    - name: Build Jekyll site
+      run: |
+        # Your build commands here
