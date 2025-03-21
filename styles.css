@@ -1,20 +1,28 @@
 
 body {
+
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #1c1c1c, #383838);
   color: #f4f4f4;
+  background-image: url('images/sharingan.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen;
 }
 
 .main {
   max-width: 800px;
+  max-height: 800px;
   margin: 30px auto;
   background-color: rgba(0, 0, 0, 0.85);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   padding: 20px;
   text-align: center;
+ 
+
 }
 
 .bank {
@@ -29,11 +37,13 @@ body {
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  text-align: center;
+
 }
 
 .player, .dealer {
   background-color: rgba(50, 70, 90, 0.8);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   margin: 20px 0;
   padding: 15px;
@@ -56,8 +66,9 @@ img {
   width: 80px;
   height: 120px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  box-shadow: 0 2px 60px rgba(0,0,0,0.6);
   background-color: white;
+  animation: shine 3s infinite;
 }
 
 .controls {
@@ -80,6 +91,7 @@ button {
 
 button:hover {
   background: linear-gradient(to right, #3a7bd5, #4e9af1);
+  animation: pulse 1s infinite;
 }
 
 button:disabled {
@@ -93,4 +105,29 @@ button:disabled {
   font-weight: bold;
   min-height: 24px;
   color: #ffcc00;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shine {
+  0% {
+    box-shadow: 1px 0px 10px rgba(55, 5, 220, 0.5);
+  }
+  50% {
+    box-shadow: 10px 10px 20px rgba(22, 10, 189, 0.8);
+  }
+  100% {
+    box-shadow: 1px 0px 10px rgba(12, 32, 185, 0.5);
+  }
 }
